@@ -1,0 +1,12 @@
+@import "/src/common/styles/mixins";
+@import "/src/common/styles/variables";
+
+
+.container {
+  @include flex(center, center, column);
+  @include text(16px, 1,$textColor);
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+

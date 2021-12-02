@@ -1,0 +1,56 @@
+@import "/src/common/styles/mixins";
+@import "/src/common/styles/variables";
+
+
+.wrap {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-width: 100%;
+  min-height: 60vh;
+  background-color: $backgroundColor;
+
+  @include text(16px, 1.2, $secondTextColor);
+
+  .book {
+    @include flex(flex-start, flex-start, column);
+    margin: 20px 15px;
+    flex-wrap: nowrap;
+    word-break: break-word;
+    background-color: $BookBackgroundColor;
+    border-radius: 5px;
+    padding: 20px;
+    //min-height: 300px;
+    //max-width: 250px;
+    text-align: left;
+    & img {
+      align-self: center;
+
+      height: 150px;
+      width: 110px;
+      padding-top: 5px;
+      box-shadow: 9px 8px 7px #02020240;
+    }
+
+    .description {
+      @include flex(flex-start, flex-start, column);
+      margin-top: 25px;
+      font-size: 14px;
+
+      div:nth-child(1) {
+        text-decoration: underline;
+        opacity: 0.5;
+      }
+
+      div:nth-child(2) {
+        font-weight: 600;
+        font-size: 16px;
+        margin: 10px 0;
+      }
+
+      div:nth-child(3) {
+        opacity: 0.5;
+      }
+    }
+  }
+}

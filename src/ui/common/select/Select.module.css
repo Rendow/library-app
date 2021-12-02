@@ -1,0 +1,30 @@
+
+.default {
+    font-family: inherit;
+    font-size: inherit;
+    width: 100%;
+    outline: none;
+    min-width: 15ch;
+    max-width: 20ch;
+    border: 1px solid #EBEBEB;
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+    cursor: pointer;
+    line-height: 1.1;
+    background-color: #fff;
+    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+.default::after {
+    content: "";
+    width: 0.8em;
+    height: 0.5em;
+    background-color: black;
+
+}
+.default:focus {
+    box-shadow: 0px 0px 10px #C0C0C0;
+}
+
+option {
+    border: none;
+ }

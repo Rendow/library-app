@@ -1,0 +1,27 @@
+.default {
+    resize: none;
+    outline: none;
+    padding: 5px;
+    padding-left: 7%;
+
+    border: 1px solid #EBEBEB;
+    border-radius: 10px;
+
+    background: no-repeat 2%;
+    background-size: 5%;
+    font-size: 14px;
+}
+
+.default:focus {
+    box-shadow: 0px 0px 10px #C0C0C0;
+}
+
+.errorInput {
+    border: #8e2121 solid 1px;
+    background: aliceblue;
+}
+
+.error {
+    color: #8e2121;
+    font-size: 16px;
+}

@@ -1,0 +1,16 @@
+.default {
+    align-self: center;
+    width: 95px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.default:hover{
+    box-shadow: 1px 1px 10px #C0C0C0;
+    cursor: pointer;
+}
+.error {
+    background-color: darkred;
+}
