@@ -1,3 +1,5 @@
+import { Nullable } from './Nullable';
+
 type VolumeInfoType = {
     allowAnonLogging: boolean;
     authors: string[];
@@ -37,7 +39,7 @@ type QueryTermType = {
 type AppStateType = {
     items: ItemsType[];
     status: RequestStatusType;
-    error: string | null;
+    error: Nullable<string>;
     currentBook: ItemsType[];
     queryTerm: QueryTermType;
 };

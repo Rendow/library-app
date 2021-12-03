@@ -4,11 +4,12 @@ import { API } from '../dal/api/api';
 import { setTotalItemsAC } from './pageReducer';
 import { AppRootActionType, AppRootStateType } from './store';
 import {RequestStatusType,AppStateType,QueryTermType,ItemsType} from './types/app-types'
+import { Nullable } from './types/Nullable';
 
 const initialState = {
     status: 'idle' as RequestStatusType,
     items: [] as ItemsType[],
-    error: null as null | string,
+    error: null as Nullable<string>,
     currentBook: [] as ItemsType[],
     queryTerm: {} as QueryTermType,
 };
@@ -52,7 +53,7 @@ export const setBooksAC = (books: ItemsType[]) => ({ type: 'APP/SET-BOOKS', book
 export const setNewBooksAC = (books: ItemsType[]) => ({ type: 'APP/SET-NEW-BOOKS', books } as const);
 export const setCurrentBookAC = (id: string) => ({ type: 'APP/SET-CURRENT-BOOK', id } as const);
 export const setAppStatusAC = (status: RequestStatusType) => ({ type: 'APP/SET-STATUS', status } as const);
-export const setAppErrorAC = (error: string | null) => ({ type: 'APP/SET-ERROR', error } as const);
+export const setAppErrorAC = (error: Nullable<string>) => ({ type: 'APP/SET-ERROR', error } as const);
 export const setQueryTermAC = (term: QueryTermType) => ({ type: 'APP/SET-QUERY-TERM', term } as const);
 
 //thunk

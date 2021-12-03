@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './App.module.scss';
-import { SearchForm } from './ui/search-form/SearchForm';
-import { routes } from './ui/router/routes';
+import { SearchForm } from './search-form/SearchForm';
+import { routes } from './router/routes';
 import { Route, Routes } from 'react-router-dom';
-import { BookList } from './ui/book-list/BookList';
-import { BookCard } from './ui/book-card/BookCard';
+import { BookList } from './book-list/BookList';
+import { BookCard } from './book-card/BookCard';
 
 function App() {
     return (
