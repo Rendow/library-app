@@ -114,16 +114,10 @@ export const fetchBooksTC =
             const res = await API.getBooks(search, categories, sortBy, index);
             if (res.status === 200) {
                 dispatch(setTotalItemsAC(res.data.totalItems));
-                // if (prevSearch === search && (prevCategories !== categories || prevSortBy !== sortBy)) {
-                //     dispatch(setNewBooksAC(res.data.items));
-                // } else {
-                //     dispatch(setBooksAC(res.data.items));
-                // }
+
                 if (prevSearch === search && prevCategories === categories && prevSortBy === sortBy) {
-                    debugger
                     dispatch(setBooksAC(res.data.items));
                 } else {
-                    debugger
                     dispatch(setNewBooksAC(res.data.items));
                 }
                 dispatch(setAppStatusAC('succeeded'));

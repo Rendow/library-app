@@ -34,24 +34,31 @@ export const BookList = () => {
                 </div>
             ) : (
                 <>
-                    {totalItems && (
-                        <div className={s.count}>Found {totalItems && totalItems} results</div>
-                    )}
-                    <div className={s.bookList}>
-                        {books &&
-                            books.map(item => (
-                                <Book key={item.id} id={item.id} item={item.volumeInfo} />
-                            ))}
-                    </div>
-                    {totalItems && (
-                        <Button disabled={status === 'loading'} className={s.btn} onClick={loadMore}>
-                            Load more
-                        </Button>
-                    )}
-                    {status === 'loading' && (
-                        <div className={s.loadWrap}>
-                            <Preloader />
-                        </div>
+                    {totalItems > 0 && (
+                        <>
+                            <div className={s.count}>Found {totalItems && totalItems} results</div>
+
+                            <div className={s.bookList}>
+                                {books &&
+                                    books.map(item => (
+                                        <Book key={item.id} id={item.id} item={item.volumeInfo} />
+                                    ))}
+                            </div>
+                            {totalItems && (
+                                <Button
+                                    disabled={status === 'loading'}
+                                    className={s.btn}
+                                    onClick={loadMore}
+                                >
+                                    Load more
+                                </Button>
+                            )}
+                            {status === 'loading' && (
+                                <div className={s.loadWrap}>
+                                    <Preloader />
+                                </div>
+                            )}
+                        </>
                     )}
                 </>
             )}

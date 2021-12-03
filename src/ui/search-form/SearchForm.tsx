@@ -2,7 +2,7 @@ import Input from '../common/input/Input';
 import s from './SearchForm.module.scss';
 import Button from '../common/button/Button';
 import Select from '../common/select/Select';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { fetchBooksTC, RequestStatusType } from '../../bll/appReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppRootStateType } from '../../bll/store';
@@ -24,7 +24,6 @@ export const SearchForm = () => {
     const navigate = useNavigate();
     const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status);
     const formRef = useRef<HTMLFormElement>(null);
-    const searchTerm = useSelector<AppRootStateType, string>(state => state.app.queryTerm.search);
 
     const handleSubmit = (e: React.FormEvent<FormPropsElement>) => {
         e.preventDefault();
@@ -37,10 +36,6 @@ export const SearchForm = () => {
             alert('Input should be more than 1 character and less then 20');
             formRef.current && formRef.current.reset();
         }
-        // if (search === searchTerm) {
-        //     alert('Type new search value or switch selectors');
-        //     formRef.current && formRef.current.reset();
-        // }
 
         dispatch(fetchBooksTC(search, categories, sortBy));
 

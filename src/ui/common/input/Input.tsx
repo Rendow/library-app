@@ -21,6 +21,7 @@ const Input = React.memo(({
     spanClassName,
     ...restProps
 }:InputPropsType) => {
+
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
         onChange && onChange(e);
 

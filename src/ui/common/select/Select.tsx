@@ -20,6 +20,7 @@ const Select = React.memo(({
     onChangeOption,
     ...restProps
 }:SuperSelectPropsType) => {
+
     const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>) => {
         onChangeOption && onChangeOption(e.currentTarget.value);
         onChange && onChange(e);
@@ -37,7 +38,7 @@ const Select = React.memo(({
 
     return (
         <select name={name} className={finalClassName} onChange={onChangeCallback} {...restProps}>
-            {mappedOptions}{' '}
+            {mappedOptions}
         </select>
     );
 });

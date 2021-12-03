@@ -22,7 +22,6 @@
       }
     }
 
-
     .description {
       @include flex(flex-start, flex-start, column);
       @include text(16px, 1, $secondTextColor);
