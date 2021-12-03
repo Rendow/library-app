@@ -5,7 +5,7 @@ const instance = axios.create({
 });
 
 export const API = {
-    getBooks(query:string, categories:string,sortBy:string) {
-        return instance.get(`volumes?q=${query}+${categories}&orderBy=${sortBy}&key=AIzaSyB-JHixor0WrTyBQX64mEutuCjbJoTaopY`);
+    getBooks(query:string, categories:string,sortBy:string,index:number) {
+        return instance.get(`volumes?q=${query}+${categories}&orderBy=${sortBy}&maxResults=30&startIndex=${index}&key=AIzaSyB-JHixor0WrTyBQX64mEutuCjbJoTaopY`);
     },
 };

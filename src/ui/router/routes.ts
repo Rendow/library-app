@@ -1,5 +1,5 @@
 
 export const routes = {
-    books: "/",
-    book: "/book"
+    bookList: "/",
+    bookCard: "/book-card"
 }

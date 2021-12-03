@@ -10,10 +10,10 @@ type SuperButtonPropsType = DefaultButtonPropsType & {
     error?: boolean;
 };
 
-const Button: React.FC<SuperButtonPropsType> = ({ error, className, ...restProps }) => {
+const Button = React.memo(({ error, className, ...restProps }:SuperButtonPropsType) => {
     const finalClassName = `${error ? s.error + ' ' + s.default : s.default} ${className}`;
 
     return <button className={finalClassName} {...restProps} />;
-};
+});
 
 export default Button;

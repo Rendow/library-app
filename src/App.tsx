@@ -1,22 +1,20 @@
-import React, { useState } from 'react';
-import s from'./App.module.scss';
+import React from 'react';
+import s from './App.module.scss';
 import { SearchForm } from './ui/search-form/SearchForm';
 import { routes } from './ui/router/routes';
 import { Route, Routes } from 'react-router-dom';
-import { Books } from './ui/books/Books';
-import { Book } from './ui/book/Book';
+import { BookList } from './ui/book-list/BookList';
+import { BookCard } from './ui/book-card/BookCard';
 
 function App() {
-
     return (
         <div className={s.container}>
-            <SearchForm/>
+            <SearchForm />
             <Routes>
-                <Route  path={'/*'} element={<Books/>}/>
-                <Route  path={routes.books} element={<Books/>}/>
-                <Route  path={routes.book}  element={ <Book/>}/>
+                <Route path={'/*'} element={<BookList />} />
+                <Route path={routes.bookList} element={<BookList />} />
+                <Route path={routes.bookCard} element={<BookCard />} />
             </Routes>
-
         </div>
     );
 }

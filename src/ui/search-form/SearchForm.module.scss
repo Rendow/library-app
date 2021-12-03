@@ -7,7 +7,7 @@
 
   position: relative;
   width: 100%;
-  height: 40vh;
+  height: 45vh;
 
 
   .bcgImage {
@@ -33,15 +33,24 @@
     max-width: 780px;
 
     .title {
-      @include text(80px, 2,$textColor);
+      @include text(80px, 1, $textColor);
       letter-spacing: 3px;
       font-weight: 400;
+      margin-bottom: 40px;
+      @media (max-width: 900px) {
+        font-size: 50px;
+      }
+      @media (max-width: 470px) {
+        font-size: 30px;
+      }
+
     }
 
     .inputGroup {
       display: flex;
       justify-content: space-between;
       width: 100%;
+
       .input {
         height: 40px;
         width: 70%;
@@ -56,28 +65,38 @@
     }
 
     .selectGroup {
-      @include text(14px, 1,$textColor);
+      @include text(14px, 1, $textColor);
+      @media (max-width: 500px) {
+        flex-direction: column;
+        margin-top: 25px;
+        div:nth-child(2) {
+          margin: 10px 0 0 0;
+        }
+      }
       margin: 40px 0;
       white-space: nowrap;
       display: flex;
       width: 100%;
       justify-content: flex-end;
-      &:nth-child(2){
+
+      div:nth-child(2) {
         margin-left: 10px;
       }
-      & div{
+
+      & div {
         display: flex;
         align-items: center;
-        &:nth-child(2){
+
+        &:nth-child(2) {
           margin-left: 30px;
         }
       }
-      & span{
+
+      & span {
         margin-right: 10px;
         flex-grow: 1;
       }
     }
 
   }
-
 }

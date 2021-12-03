@@ -12,14 +12,14 @@ type SuperSelectPropsType = DefaultSelectPropsType & {
     name?: string;
 };
 
-const Select: React.FC<SuperSelectPropsType> = ({
+const Select = React.memo(({
     options,
     name,
     className,
     onChange,
     onChangeOption,
     ...restProps
-}) => {
+}:SuperSelectPropsType) => {
     const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>) => {
         onChangeOption && onChangeOption(e.currentTarget.value);
         onChange && onChange(e);
@@ -40,6 +40,6 @@ const Select: React.FC<SuperSelectPropsType> = ({
             {mappedOptions}{' '}
         </select>
     );
-};
+});
 
 export default Select;

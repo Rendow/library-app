@@ -2,11 +2,12 @@ import Input from '../common/input/Input';
 import s from './SearchForm.module.scss';
 import Button from '../common/button/Button';
 import Select from '../common/select/Select';
-import React from 'react';
-import { fetchBooksTC, ItemsType } from '../../bll/appReducer';
+import React, { useEffect, useRef, useState } from 'react';
+import { fetchBooksTC, RequestStatusType } from '../../bll/appReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppRootStateType } from '../../bll/store';
-import { Books } from '../books/Books';
+import { useNavigate } from 'react-router-dom';
+import { routes } from '../router/routes';
 
 interface FormElements extends HTMLFormControlsCollection {
     search: HTMLInputElement;
@@ -20,8 +21,10 @@ interface FormPropsElement extends HTMLFormElement {
 
 export const SearchForm = () => {
     const dispatch = useDispatch();
-    const books = useSelector<AppRootStateType, ItemsType[]>(state => state.app.items);
-    const status = useSelector<AppRootStateType, string>(state => state.app.status);
+    const navigate = useNavigate();
+    const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status);
+    const formRef = useRef<HTMLFormElement>(null);
+    const searchTerm = useSelector<AppRootStateType, string>(state => state.app.queryTerm.search);
 
     const handleSubmit = (e: React.FormEvent<FormPropsElement>) => {
         e.preventDefault();
@@ -30,20 +33,30 @@ export const SearchForm = () => {
         let categories = e.currentTarget.elements.categories.value;
         let sortBy = e.currentTarget.elements.sortBy.value;
 
+        if (search.trim() === '' || search.length > 20) {
+            alert('Input should be more than 1 character and less then 20');
+            formRef.current && formRef.current.reset();
+        }
+        // if (search === searchTerm) {
+        //     alert('Type new search value or switch selectors');
+        //     formRef.current && formRef.current.reset();
+        // }
+
         dispatch(fetchBooksTC(search, categories, sortBy));
+
+        navigate(routes.bookList);
     };
     const categories = ['all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry'];
     const sortBy = ['relevance', 'newest'];
 
-
     return (
         <div className={s.wrap}>
             <div className={s.bcgImage} />
-            <form className={s.form} onSubmit={handleSubmit}>
+            <form ref={formRef} className={s.form} onSubmit={handleSubmit}>
                 <span className={s.title}> Online library</span>
                 <div className={s.inputGroup}>
                     <Input placeholder="Search" name="search" className={s.input} />
-                    <Button type={'submit'} className={s.btn}>
+                    <Button type={'submit'} disabled={status === 'loading'} className={s.btn}>
                         search
                     </Button>
                 </div>
@@ -59,12 +72,6 @@ export const SearchForm = () => {
                     </div>
                 </div>
             </form>
-            {/*<div style={{ display: 'flex', width: '500px' }}>*/}
-            {/*    {books &&*/}
-            {/*        books.map(item => {*/}
-            {/*            // return <Books books={item}/>*/}
-            {/*        })}*/}
-            {/*</div>*/}
         </div>
     );
 };

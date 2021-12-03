@@ -1,5 +1,6 @@
 
 .default {
+    text-transform: capitalize;
     font-family: inherit;
     font-size: inherit;
     width: 100%;

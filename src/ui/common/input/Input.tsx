@@ -10,7 +10,7 @@ type InputPropsType = DefaultInputPropsType & {
     spanClassName?: string;
 };
 
-const Input: React.FC<InputPropsType> = ({
+const Input = React.memo(({
     type,
     onChange,
     onChangeText,
@@ -20,7 +20,7 @@ const Input: React.FC<InputPropsType> = ({
     className,
     spanClassName,
     ...restProps
-}) => {
+}:InputPropsType) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
         onChange && onChange(e);
 
@@ -46,9 +46,9 @@ const Input: React.FC<InputPropsType> = ({
                 style={{ backgroundImage: `url(${searchIcon})` }}
                 {...restProps}
             />
-            {error && <span className={finalSpanClassName}>{error}</span>}
+            {error && <div className={finalSpanClassName}>{error}</div>}
         </>
     );
-};
+});
 
 export default Input;
