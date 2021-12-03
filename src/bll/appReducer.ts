@@ -3,50 +3,7 @@ import { handleNetworkAppError } from './utils/error-utils';
 import { API } from '../dal/api/api';
 import { setTotalItemsAC } from './pageReducer';
 import { AppRootActionType, AppRootStateType } from './store';
-
-export type VolumeInfoType = {
-    allowAnonLogging: boolean;
-    authors: string[];
-    canonicalVolumeLink: string;
-    categories: string[];
-    contentVersion: string;
-    imageLinks: {
-        smallThumbnail: string;
-        thumbnail: string;
-    };
-    industryIdentifiers: [];
-    infoLink: string;
-    language: string;
-    maturityRating: string;
-    pageCount: number;
-    panelizationSummary: {
-        containsEpubBubbles: false;
-        containsImageBubbles: false;
-    };
-    previewLink: string;
-    printType: string;
-    publishedDate: string;
-    readingModes: string;
-    title: string;
-    description: string;
-};
-export type ItemsType = {
-    volumeInfo: VolumeInfoType;
-    id: string;
-};
-export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed';
-export type QueryTermType = {
-    search: string;
-    categories: string;
-    sortBy: string;
-};
-type AppStateType = {
-    items: ItemsType[];
-    status: RequestStatusType;
-    error: string | null;
-    currentBook: ItemsType[];
-    queryTerm: QueryTermType;
-};
+import {RequestStatusType,AppStateType,QueryTermType,ItemsType} from './types/app-types'
 
 const initialState = {
     status: 'idle' as RequestStatusType,
@@ -63,7 +20,7 @@ export const appReducer = (state: AppStateType = initialState, action: AppAction
             const newState = [...action.books]
 
             const idList = oldState.map(i => i.id)
-
+debugger
             const uniqueNewState = newState.filter(i => !idList.includes(i.id));
             return { ...state, items: [...oldState,...uniqueNewState] };
         case 'APP/SET-NEW-BOOKS':
@@ -123,10 +80,8 @@ export const fetchBooksTC =
                 dispatch(setAppStatusAC('succeeded'));
             } else {
                 handleNetworkAppError({ message: res.statusText }, dispatch);
-                dispatch(setAppStatusAC('failed'));
             }
         } catch (error) {
             handleNetworkAppError(error as Error, dispatch);
-            dispatch(setAppStatusAC('failed'));
         }
     };

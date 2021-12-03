@@ -1,9 +1,6 @@
 import { AppRootActionType } from './store';
+import { PageStateType } from './types/page-types';
 
-export type PageStateType = {
-    totalItems: number;
-    pageIndex: number;
-};
 
 const initialState = {
     totalItems: 0,

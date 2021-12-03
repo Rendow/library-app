@@ -1,10 +1,11 @@
-import { setCurrentBookAC, VolumeInfoType } from '../../../bll/appReducer';
+import { setCurrentBookAC } from '../../../bll/appReducer';
 import { routes } from '../../router/routes';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import s from './Book.module.scss';
 import bookImg from '../../../common/assets/img/book.png';
 import React from 'react';
+import { VolumeInfoType } from '../../../bll/types/app-types';
 
 type BookPropsType = {
     item: VolumeInfoType;

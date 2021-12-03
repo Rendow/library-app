@@ -1,12 +1,11 @@
 import { useSelector } from 'react-redux';
-import { AppRootStateType } from '../../bll/store';
-import { ItemsType } from '../../bll/appReducer';
 import s from './BookCard.module.scss';
 import React from 'react';
 import bookImg from '../../common/assets/img/book.png';
+import { selectBook } from './selectors';
 
 export const BookCard = () => {
-    const book = useSelector<AppRootStateType, ItemsType[]>(state => state.app.currentBook);
+    const book = useSelector(selectBook);
     return (
         <div>
             {book &&
@@ -16,7 +15,10 @@ export const BookCard = () => {
                         <div key={item.id} className={s.wrap}>
                             <div className={s.book}>
                                 <div className={s.img}>
-                                    <img src={value.imageLinks ? value.imageLinks.thumbnail : bookImg} alt='image has been losted' />
+                                    <img
+                                        src={value.imageLinks ? value.imageLinks.thumbnail : bookImg}
+                                        alt="image has been losted"
+                                    />
                                 </div>
 
                                 <div className={s.description}>

@@ -1,30 +1,29 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppRootStateType } from '../../bll/store';
-import { fetchBooksTC, ItemsType, QueryTermType, RequestStatusType, setAppErrorAC } from '../../bll/appReducer';
+import { fetchBooksTC, setAppErrorAC } from '../../bll/appReducer';
 import s from './BookList.module.scss';
 import { Preloader } from '../common/preloader/Preloader';
 import { Book } from './book/Book';
-import { PageStateType, setPageIndexAC } from '../../bll/pageReducer';
+import { setPageIndexAC } from '../../bll/pageReducer';
 import Button from '../common/button/Button';
+import { selectBooks, selectError, selectPageInfo, selectQueryTerm, selectStatus } from './selectors';
 
 export const BookList = () => {
     const dispatch = useDispatch();
-    const books = useSelector<AppRootStateType, ItemsType[]>(state => state.app.items);
-    const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status);
-    const error = useSelector<AppRootStateType, string | null>(state => state.app.error);
-
-    const { totalItems, pageIndex } = useSelector<AppRootStateType, PageStateType>(state => state.page);
-    const { search, categories, sortBy } = useSelector<AppRootStateType, QueryTermType>(state => state.app.queryTerm,);
+    const books = useSelector(selectBooks);
+    const status = useSelector(selectStatus);
+    const error = useSelector(selectError);
+    const { totalItems, pageIndex } = useSelector(selectPageInfo);
+    const { search, categories, sortBy } = useSelector(selectQueryTerm);
 
     const loadMore = () => {
         dispatch(fetchBooksTC(search, categories, sortBy, pageIndex));
         dispatch(setPageIndexAC(30));
     };
 
-    if(error){
-        alert(error)
-        dispatch(setAppErrorAC(''))
+    if (error) {
+        alert(error);
+        dispatch(setAppErrorAC(''));
     }
     return (
         <div className={s.wrap}>

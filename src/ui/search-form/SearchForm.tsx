@@ -3,11 +3,11 @@ import s from './SearchForm.module.scss';
 import Button from '../common/button/Button';
 import Select from '../common/select/Select';
 import React, { useRef } from 'react';
-import { fetchBooksTC, RequestStatusType } from '../../bll/appReducer';
+import { fetchBooksTC } from '../../bll/appReducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppRootStateType } from '../../bll/store';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../router/routes';
+import { selectStatus } from '../book-list/selectors';
 
 interface FormElements extends HTMLFormControlsCollection {
     search: HTMLInputElement;
@@ -22,7 +22,7 @@ interface FormPropsElement extends HTMLFormElement {
 export const SearchForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status);
+    const status = useSelector(selectStatus);
     const formRef = useRef<HTMLFormElement>(null);
 
     const handleSubmit = (e: React.FormEvent<FormPropsElement>) => {
