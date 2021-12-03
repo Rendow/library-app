@@ -3,29 +3,32 @@ import { handleNetworkAppError } from './utils/error-utils';
 import { API } from '../dal/api/api';
 import { setTotalItemsAC } from './pageReducer';
 import { AppRootActionType, AppRootStateType } from './store';
-import {RequestStatusType,AppStateType,QueryTermType,ItemsType} from './types/app-types'
+import {RequestStatusType,AppStateType,QueryTermType,BookType} from './types/app-types'
 import { Nullable } from './types/Nullable';
+
 
 const initialState = {
     status: 'idle' as RequestStatusType,
-    items: [] as ItemsType[],
+    books: [] as BookType[],
     error: null as Nullable<string>,
-    currentBook: [] as ItemsType[],
+    currentBook: [] as BookType[],
     queryTerm: {} as QueryTermType,
 };
 
 export const appReducer = (state: AppStateType = initialState, action: AppActionType,): typeof initialState => {
     switch (action.type) {
-        case 'APP/SET-BOOKS':
-            const oldState = [...state.items]
-            const newState = [...action.books]
 
-            const idList = oldState.map(i => i.id)
-debugger
-            const uniqueNewState = newState.filter(i => !idList.includes(i.id));
-            return { ...state, items: [...oldState,...uniqueNewState] };
-        case 'APP/SET-NEW-BOOKS':
-            return { ...state, items: action.books};
+        case 'APP/SET-BOOKS':
+            const newState = [...state.books,...action.books]
+            const uniqueNewState = newState.filter((set => f => !set.has(f.id) && set.add(f.id))(new Set));
+
+            return { ...state, books: uniqueNewState };
+        case 'APP/SET-NEW-BOOKS': {
+            const newState = [...action.books]
+            const uniqueNewState = newState.filter((set => f => !set.has(f.id) && set.add(f.id))(new Set));
+
+            return { ...state, books: uniqueNewState };
+        }
         case 'APP/SET-STATUS':
             return { ...state, status: action.status };
         case 'APP/SET-QUERY-TERM':
@@ -33,7 +36,7 @@ debugger
         case 'APP/SET-ERROR':
             return { ...state, error: action.error };
         case 'APP/SET-CURRENT-BOOK':
-            return { ...state, currentBook: state.items.filter(i => i.id === action.id) };
+            return { ...state, currentBook: state.books.filter(i => i.id === action.id) };
         default:
             return state;
     }
@@ -49,8 +52,8 @@ export type AppActionType =
     | ReturnType<typeof setNewBooksAC>
     | ReturnType<typeof setQueryTermAC>;
 
-export const setBooksAC = (books: ItemsType[]) => ({ type: 'APP/SET-BOOKS', books } as const);
-export const setNewBooksAC = (books: ItemsType[]) => ({ type: 'APP/SET-NEW-BOOKS', books } as const);
+export const setBooksAC = (books: BookType[]) => ({ type: 'APP/SET-BOOKS', books } as const);
+export const setNewBooksAC = (books: BookType[]) => ({ type: 'APP/SET-NEW-BOOKS', books } as const);
 export const setCurrentBookAC = (id: string) => ({ type: 'APP/SET-CURRENT-BOOK', id } as const);
 export const setAppStatusAC = (status: RequestStatusType) => ({ type: 'APP/SET-STATUS', status } as const);
 export const setAppErrorAC = (error: Nullable<string>) => ({ type: 'APP/SET-ERROR', error } as const);
@@ -74,6 +77,7 @@ export const fetchBooksTC =
                 dispatch(setTotalItemsAC(res.data.totalItems));
 
                 if (prevSearch === search && prevCategories === categories && prevSortBy === sortBy) {
+                    debugger
                     dispatch(setBooksAC(res.data.items));
                 } else {
                     dispatch(setNewBooksAC(res.data.items));

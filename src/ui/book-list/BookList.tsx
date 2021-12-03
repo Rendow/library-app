@@ -7,6 +7,7 @@ import { Book } from './book/Book';
 import { setPageIndexAC } from '../../bll/pageReducer';
 import Button from '../common/button/Button';
 import { selectBooks, selectError, selectPageInfo, selectQueryTerm, selectStatus } from './selectors';
+import { EMPTY_STRING, PAGINATION_STEP } from '../constants/constants';
 
 export const BookList = () => {
    const dispatch = useDispatch();
@@ -16,14 +17,14 @@ export const BookList = () => {
    const { totalItems, pageIndex } = useSelector(selectPageInfo);
    const { search, categories, sortBy } = useSelector(selectQueryTerm);
 
-   const loadMore = () => {
+   const onLoadMoreClick = () => {
       dispatch(fetchBooksTC(search, categories, sortBy, pageIndex));
-      dispatch(setPageIndexAC(30));
+      dispatch(setPageIndexAC(PAGINATION_STEP));
    };
 
    if (error) {
       alert(error);
-      dispatch(setAppErrorAC(''));
+      dispatch(setAppErrorAC(EMPTY_STRING));
    }
    return (
       <div className={s.wrap}>
@@ -39,10 +40,10 @@ export const BookList = () => {
 
                      <div className={s.bookList}>
                         {books &&
-                           books.map(item => <Book key={item.id} id={item.id} item={item.volumeInfo} />)}
+                           books.map(book => <Book key={book.id} id={book.id} item={book.volumeInfo} />)}
                      </div>
                      {totalItems && (
-                        <Button disabled={status === 'loading'} className={s.btn} onClick={loadMore}>
+                        <Button disabled={status === 'loading'} className={s.btn} onClick={onLoadMoreClick}>
                            Load more
                         </Button>
                      )}

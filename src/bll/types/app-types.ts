@@ -26,7 +26,7 @@ type VolumeInfoType = {
     title: string;
     description: string;
 };
-type ItemsType = {
+type BookType = {
     volumeInfo: VolumeInfoType;
     id: string;
 };
@@ -37,10 +37,10 @@ type QueryTermType = {
     sortBy: string;
 };
 type AppStateType = {
-    items: ItemsType[];
+    books: BookType[];
     status: RequestStatusType;
     error: Nullable<string>;
-    currentBook: ItemsType[];
+    currentBook: BookType[];
     queryTerm: QueryTermType;
 };
-export type { AppStateType, RequestStatusType, QueryTermType, VolumeInfoType, ItemsType };
+export type { AppStateType, RequestStatusType, QueryTermType, VolumeInfoType, BookType };

@@ -1,4 +1,4 @@
 import { AppRootStateType } from '../../bll/store';
-import { ItemsType } from '../../bll/types/app-types';
+import { BookType } from '../../bll/types/app-types';
 
-export const selectBook = (state: AppRootStateType): ItemsType[] => state.app.currentBook;
+export const selectBook = (state: AppRootStateType): BookType[] => state.app.currentBook;

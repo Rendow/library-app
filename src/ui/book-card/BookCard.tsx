@@ -24,7 +24,7 @@ export const BookCard = () => {
                         <div className={s.description}>
                            {value.categories && <div>{value.categories}</div>}
                            <div>{value.title}</div>
-                           <div> {value.authors}</div>
+                           <div> {value.authors.join(', ')}</div>
                            {value.description && <div> {value.description}</div>}
                         </div>
                      </div>
