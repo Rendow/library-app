@@ -3,7 +3,7 @@ import { routes } from '../../router/routes';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import s from './Book.module.scss';
-import bookImg from '../../../common/assets/img/book.png';
+import bookImg from '../../common/assets/img/book.png';
 import React from 'react';
 import { VolumeInfoType } from '../../../bll/types/app-types';
 
@@ -21,7 +21,7 @@ export const Book = React.memo(({ item, id }: BookPropsType) => {
     return (
         <div className={s.book}>
             <NavLink onClick={onNavLinkClick} style={{ alignSelf: 'center' }} to={routes.bookCard}>
-                <img src={imageLinks ? imageLinks.thumbnail : bookImg} alt='image has been losted'/>
+                <img src={imageLinks ? imageLinks.thumbnail : bookImg} alt=''/>
             </NavLink>
             <div className={s.description}>
                 <div>{categories ? categories[0] : ''}</div>

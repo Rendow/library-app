@@ -1,7 +1,7 @@
-import Input from '../common/input/Input';
+import Input from '../reusable-components/input/Input';
 import s from './SearchForm.module.scss';
-import Button from '../common/button/Button';
-import Select from '../common/select/Select';
+import Button from '../reusable-components/button/Button';
+import Select from '../reusable-components/select/Select';
 import React, { useRef } from 'react';
 import { fetchBooksTC } from '../../bll/appReducer';
 import { useDispatch, useSelector } from 'react-redux';

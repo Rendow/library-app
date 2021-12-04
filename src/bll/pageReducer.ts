@@ -3,22 +3,22 @@ import { PageStateType } from './types/page-types';
 
 
 const initialState = {
-    totalItems: 0,
-    pageIndex: 30,
+    totalResult: 0,
+    startIndex: 30,
 };
-export const pageReducer = (state: PageStateType = initialState, action: AppRootActionType,): typeof initialState => {
+export const pageReducer = (state: PageStateType = initialState, action: AppRootActionType): typeof initialState => {
     switch (action.type) {
         case 'PAGE/SET-TOTAL-ITEMS':
-            return { ...state, totalItems: action.totalItems };
-        case 'PAGE/SET-PAGE-INDEX':
-            return { ...state, pageIndex: (state.pageIndex += action.index) };
+            return { ...state, totalResult: action.totalResult };
+        case 'PAGE/SET-START-SEARCH-INDEX':
+            return { ...state, startIndex: (state.startIndex += action.index) };
         default:
             return state;
     }
 };
 
 //actions
-export type PageActionType = ReturnType<typeof setTotalItemsAC> | ReturnType<typeof setPageIndexAC>;
+export type PageActionType = ReturnType<typeof setTotalResultAC> | ReturnType<typeof setStartSearchIndexAC>;
 
-export const setTotalItemsAC = (totalItems: number) => ({ type: 'PAGE/SET-TOTAL-ITEMS', totalItems } as const);
-export const setPageIndexAC = (index: number) => ({ type: 'PAGE/SET-PAGE-INDEX', index } as const);
+export const setTotalResultAC = (totalResult: number) => ({ type: 'PAGE/SET-TOTAL-ITEMS', totalResult } as const);
+export const setStartSearchIndexAC = (index: number) => ({ type: 'PAGE/SET-START-SEARCH-INDEX', index } as const);

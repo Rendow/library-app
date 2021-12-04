@@ -1,5 +1,5 @@
 type PageStateType = {
-    totalItems: number;
-    pageIndex: number;
+    totalResult: number;
+    startIndex: number;
 };
 export type { PageStateType };

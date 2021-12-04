@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import s from './BookCard.module.scss';
 import React from 'react';
-import bookImg from '../../common/assets/img/book.png';
+import bookImg from '../common/assets/img/book.png';
 import { selectBook } from './selectors';
 
 export const BookCard = () => {
@@ -17,7 +17,7 @@ export const BookCard = () => {
                         <div className={s.img}>
                            <img
                               src={value.imageLinks ? value.imageLinks.thumbnail : bookImg}
-                              alt="image has been losted"
+                              alt=""
                            />
                         </div>
 

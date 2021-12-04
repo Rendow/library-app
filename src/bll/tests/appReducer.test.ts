@@ -1,5 +1,5 @@
 import { PageStateType } from '../types/page-types';
-import { pageReducer, setPageIndexAC, setTotalItemsAC } from '../pageReducer';
+import { pageReducer, setStartSearchIndexAC, setTotalResultAC } from '../pageReducer';
 import { AppStateType, BookType, QueryTermType, RequestStatusType } from '../types/app-types';
 import { Nullable } from '../types/Nullable';
 import {
