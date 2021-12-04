@@ -1,4 +1,4 @@
-import { BookType } from './types/app-types';
+import { BookType } from '../types/app-types';
 
 type FilterType = 'id'
 export const filterById = function(array:BookType[], propertyName:FilterType) {

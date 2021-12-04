@@ -5,7 +5,7 @@ import { setTotalResultAC } from './pageReducer';
 import { AppRootActionType, AppRootStateType } from './store';
 import { RequestStatusType, AppStateType, QueryTermType, BookType } from './types/app-types';
 import { Nullable } from './types/Nullable';
-import { filterById } from './helper';
+import { filterById } from './utils/helper-function';
 
 const initialState = {
    status: 'idle' as RequestStatusType,
